@@ -57,6 +57,12 @@ save_settings : False
 #      true  - Use device generated timestamp
 use_device_timestamp : False
 
+# Controls if the driver uses ROS time for timestamping messages. Can be useful when running under simulation.
+# NOTE: This can be used in conjunction with use_device_timestamp in which case, the device timestmap will be used for sensor_msgs/TimeReference messages, and ROS time will be used for all other messages
+#       false - Use PC received time for timestamping
+#       true  - Use ROS time for timestamping all non sensor_msgs/TimeReference messages
+use_ros_time : False
+
 # Controls if the driver creates a raw binary file
 #      false - Do not create the file
 #      true  - Create the file
@@ -142,7 +148,7 @@ filter_data_rate : 10
 #     0 = None, 1 = Euler Angles, 2 - matrix, 3 - quaternion
 #     Notes: These are different ways of setting the same parameter in the device.
 #            The different options are provided as a convenience.
-#            Support for matrix and quaternion options is firmware version dependent (Quaternion not currently supported on GQ7)
+#            Support for matrix and quaternion options is firmware version dependent (GQ7 supports Quaternion as of firmware 1.0.07)
 #            Quaternion order is [i, j, k, w]
 filter_sensor2vehicle_frame_selector : 1
 
